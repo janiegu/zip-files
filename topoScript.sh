@@ -2,18 +2,16 @@
 
 mkdir -p geojson topojson
 
-for (( i=1; i <= 78; i++ ))
+for (( s=1; s <= 78; s++ ))
 do
+	i=$s
     if [ $i -lt 10 ]
         then
-	curl -O $(echo "ftp://ftp2.census.gov/geo/tiger/TIGER2010/ZCTA5/2010/tl_2010_0"$i"_zcta510.zip")
-        unzip $(echo "tl_2010_0"$i"_zcta510.zip")
-	ogr2ogr -f "GeoJSON" $(echo "geojson/0"$i".json") $(echo "tl_2010_0"$i"_zcta510.shp")
-	topojson -p --id-property ZCTA5CE10 --out $(echo "topojson/0"$i".json") $(echo "geojson/0"$i".json")
-    else
+        i=$(echo "0"$i)
+	fi
 	curl -O $(echo "ftp://ftp2.census.gov/geo/tiger/TIGER2010/ZCTA5/2010/tl_2010_"$i"_zcta510.zip")
-        unzip $(echo "tl_2010_"$i"_zcta510.zip")
+	    unzip $(echo "tl_2010_"$i"_zcta510.zip")
 	ogr2ogr -f "GeoJSON" $(echo "geojson/"$i".json") $(echo "tl_2010_"$i"_zcta510.shp")
-	topojson -p --id-property ZCTA5CE10 --out $(echo "topojson/"$i".json") $(echo "geojson/"$i".json")
-        fi
+	topojson -p --out $(echo "topojson/"$i".json") $(echo "geojson/"$i".json")
+	rm $(echo "tl_2010_"$i"_zcta510.dbf") $(echo "tl_2010_"$i"_zcta510.prj") $(echo "tl_2010_"$i"_zcta510.shp") $(echo "tl_2010_"$i"_zcta510.shp.xml") $(echo "tl_2010_"$i"_zcta510.shx") $(echo "tl_2010_"$i"_zcta510.zip")
 done
