@@ -35,7 +35,7 @@ mv 37.json NC.json
 mv 38.json ND.json
 mv 39.json OH.json
 mv 40.json OK.json
-mv 41.json OR>json
+mv 41.json OR.json
 mv 42.json PA.json
 mv 44.json RI.json
 mv 45.json SC.json
@@ -50,7 +50,7 @@ mv 54.json WV.json
 mv 55.json WI.json
 mv 56.json WY.json
 mv 60.json AS.json
-mv 64.json Fm.json
+mv 64.json FM.json
 mv 66.json GU.json
 mv 68.json MH.json
 mv 69.json MP.json
